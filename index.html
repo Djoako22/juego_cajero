@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Juego Cajero</title>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <div class="local">
+            <div class="cliente">
+                <h1>CLIENTE</h1>
+                <h3 class="respuesta"></h3>
+                <br />
+                <span>Precio:</span>
+                <input
+                    type="text"
+                    class="precio"
+                    placeholder="Precio"
+                    disabled
+                />
+                <span>Dinero:</span>
+                <input
+                    type="text"
+                    class="dinero"
+                    placeholder="Dinero"
+                    disabled
+                />
+            </div>
+            <div class="cajero">
+                <form class="caja">
+                    <h1>CAJA</h1>
+                    <persona
+                        ><img
+                            src="https://cdn-icons.flaticon.com/png/512/3258/premium/3258583.png?token=exp=1643432320~hmac=5c3d410a3c2848251341e98d9c61dbaa"
+                            width="100" /></persona
+                    ><br />
+                    <span>Cambio:</span>
+                    <input
+                        type="text"
+                        class="cambio"
+                        placeholder="Cambio"
+                        required
+                        autofocus
+                        disabled
+                    />
+                    <button>Dar</button>
+                </form>
+                <div class="cajaBilletes"></div>
+            </div>
+            © Joaquin Garcia
+        </div>
+
+        <script src="main.js"></script>
+    </body>
+</html>

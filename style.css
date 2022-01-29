@@ -1,0 +1,83 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background-image: url("https://c8.alamy.com/compes/2g66h97/ilustracion-vectorial-del-interior-del-supermercado-gran-supermercado-tienda-con-muchos-productos-frutas-y-verduras-centro-comercial-interior-en-dibujos-animados-planos-2g66h97.jpg");
+}
+
+.local {
+    margin: auto;
+    width: 100vw;
+}
+
+.cliente,
+.cajero {
+    padding: 10px 10px;
+    background-color: #e4e4e49d;
+    width: 100%;
+    height: 50%;
+}
+
+.cajaBilletes {
+    display: flex;
+}
+
+.billete {
+    background-color: #78b94f;
+    color: #fff;
+    font-weight: 800;
+    margin: 5px;
+    padding: 15px 10px;
+    border: #3e602e solid 5px;
+    border-radius: 5px;
+}
+
+c {
+    background-color: #3e602e;
+    padding: 10px;
+    border-radius: 50px;
+}
+
+.billete:hover {
+    filter: brightness(80%);
+}
+
+input,
+button {
+    width: 100%;
+    margin: 2px;
+    padding: 5px;
+    font-size: 1.2em;
+    font-weight: 800;
+}
+
+input {
+    background-color: #111;
+    color: #0e0;
+    font-family: "consolas";
+}
+
+button {
+    cursor: pointer;
+}
+
+persona {
+    font-size: 3em;
+}
+
+texto {
+    border: #111 solid 3px;
+    border-radius: 50px;
+    background-color: #fff;
+    padding: 20px;
+}
+
+@media (max-width: 768px){
+    .cajaBilletes {
+        overflow: scroll;
+    }
+}
