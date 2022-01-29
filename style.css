@@ -76,8 +76,12 @@ texto {
     padding: 20px;
 }
 
-@media (max-width: 768px){
-    .cajaBilletes {
-        overflow: scroll;
-    }
+temporizador {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: #fff;
+    font-size: 5vh;
+    font-weight: 800;
+    margin: 0 10px;
 }
