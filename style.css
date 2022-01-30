@@ -19,7 +19,7 @@ body {
 
 .cajaBilletes {
     display: flex;
-    padding-left: 2px;
+    gap: 5px;
 }
 
 .billete {
@@ -44,7 +44,7 @@ c {
 input,
 button {
     width: 100%;
-    margin: 2px;
+    margin: 2px 0;
     padding: 5px;
     font-size: 1.2em;
     font-weight: 800;
