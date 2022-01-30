@@ -73,18 +73,19 @@ texto {
 
 temporizador,
 puntos {
-    position: absolute;
-    width: 100%;
     color: #111;
     font-size: 5vh;
     font-weight: 800;
 }
 
 temporizador {
+    display: block;
     text-align: center;
 }
 
 puntos {
+    position: absolute;
+    width: 100%;
     text-align: end;
     padding-right: 10px;
 }
