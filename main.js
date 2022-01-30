@@ -13,8 +13,10 @@ const cambio = document.querySelector(".cambio");
 const cajaBilletes = document.querySelector(".cajaBilletes");
 const billete = document.querySelector(".billete");
 const temporizador = document.querySelector("temporizador");
+const puntos = document.querySelector("puntos");
 
 let t = 30;
+let termino;
 let cuantosClientes = 0;
 
 let clientes = ["👩", "👨", "👨‍⚕️", "👮‍♂️", "👩‍🎓", "👩‍🔬", "👨‍🍳"];
@@ -44,20 +46,28 @@ function obtenerAleatorio(min, max) {
 }
 
 function tiempo() {
+    if (t == 0) {
+        alert("Ganaste!");
+    }
     if (cuantosClientes > 0 && cuantosClientes % 5 == 0) {
-        t -= 2;
+        t -= 5;
     }
     temporizador.innerHTML = t;
     const x = setInterval(() => {
-        if (parseInt(temporizador.innerHTML) < 2) {
+        temporizador.innerHTML = parseInt(temporizador.innerHTML) - 1;
+        if (parseInt(temporizador.innerHTML) < 1) {
             respuesta.innerHTML =
-                "<persona>😒</persona><texto>Ya fue, me voy a otro lado.</texto>";
+            "<persona>😒</persona><texto>Ya fue, compro en otro lado.</texto>";
+            cuantosClientes = 0;
+            t = 30;
             clearInterval(x);
             setTimeout(() => {
                 renderLocal();
-            }, 2000);
+            }, 3000);
         }
-        temporizador.innerHTML = parseInt(temporizador.innerHTML) - 1;
+        if (termino) {
+            clearInterval(x);
+        }
     }, 1000);
 }
 
@@ -69,9 +79,8 @@ function atender(e) {
     ) {
         sonido_correcto.play();
         respuesta.innerHTML = "<persona>👍</persona><texto>Gracias!</texto>";
-        // if (parseInt(temporizador.innerHTML)%10==0) {
-        // }
         cuantosClientes++;
+        termino = true;
         setTimeout(() => {
             renderLocal();
         }, 1000);
@@ -108,6 +117,7 @@ function ayudar() {
         sonido_correcto.play();
         respuesta.innerHTML = "<persona>👍</persona><texto>Gracias!</texto>";
         cuantosClientes++;
+        termino = true;
         setTimeout(() => {
             renderLocal();
         }, 1000);
@@ -115,19 +125,25 @@ function ayudar() {
 }
 
 function renderLocal() {
+    // Cliente
     respuesta.innerHTML = `<persona>${
         clientes[obtenerAleatorio(0, clientes.length - 1)]
     }</persona><texto>Hola! me das esto: <persona>${
         productos[obtenerAleatorio(0, productos.length - 1)]
     }</persona></texto>`;
+    // Valores
     precio.value = precios[obtenerAleatorio(0, precios.length - 1)];
     const queBilletes = billetes_cliente.filter((x) => x > precio.value);
     dinero.value = queBilletes[obtenerAleatorio(0, queBilletes.length - 1)];
+    cambio.value = 0;
+    puntos.innerHTML = cuantosClientes;
+    // Billetes
     cajaBilletes.innerHTML = "";
     billetes.forEach((b) => {
         cajaBilletes.innerHTML += `<button class="billete" onclick="pagar(${b})"><c>$${b}</c></button>`;
     });
-    cambio.value = 0;
+    // Tiempo
+    termino = false;
     tiempo();
 }
 
