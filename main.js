@@ -1,8 +1,11 @@
 const sonido_correcto = new Audio(
     "http://www.sonidosmp3gratis.com/sounds/caja-registradora%20dinero.mp3"
 );
-const sonido_fallo = new Audio(
+const sonido_error = new Audio(
     "http://www.sonidosmp3gratis.com/sounds/chicharra-error-incorrecto-.mp3"
+);
+const sonido_perder = new Audio(
+    "http://www.sonidosmp3gratis.com/sounds/nooo-nooo.mp3"
 );
 
 const respuesta = document.querySelector(".respuesta");
@@ -56,6 +59,7 @@ function tiempo() {
     const x = setInterval(() => {
         temporizador.innerHTML = parseInt(temporizador.innerHTML) - 1;
         if (parseInt(temporizador.innerHTML) < 1) {
+            sonido_perder.play();
             respuesta.innerHTML =
                 "<persona>😒</persona><texto>Ya fue, compro en otro lado.</texto>";
             cuantosClientes = 0;
@@ -63,7 +67,7 @@ function tiempo() {
             clearInterval(x);
             setTimeout(() => {
                 renderLocal();
-            }, 3000);
+            }, 5000);
         }
         if (termino) {
             clearInterval(x);
@@ -91,7 +95,7 @@ function atender(e) {
     ) {
         ayudar();
     } else {
-        sonido_fallo.play();
+        sonido_error.play();
         respuesta.innerHTML =
             "<persona>🤔</persona><texto>Espera! me diste mal el cambio.</texto>";
         cambio.value = 0;
