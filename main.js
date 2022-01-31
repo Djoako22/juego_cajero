@@ -35,7 +35,14 @@ let productos = [
     "🧦",
     "👠",
 ];
-let precios = [50, 70, 100, 150, 200, 300, 500, 900];
+let precios = [];
+(() => {
+    for (let i = 1; i <= 1000; i++) {
+        if (i % 10 == 0) {
+            precios.push(i);
+        }
+    }
+})();
 let billetes = [10, 50, 100, 500];
 let billetes_cliente = [10, 20, 50, 100, 500, 1000];
 
