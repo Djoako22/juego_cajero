@@ -35,14 +35,7 @@ let productos = [
     "🧦",
     "👠",
 ];
-let precios = [];
-(() => {
-    for (let i = 1; i <= 1000; i++) {
-        if (i % 10 == 0) {
-            precios.push(i);
-        }
-    }
-})();
+
 let billetes = [10, 50, 100, 500];
 let billetes_cliente = [10, 20, 50, 100, 500, 1000];
 
@@ -64,7 +57,7 @@ function tiempo() {
         temporizador.innerHTML = parseInt(temporizador.innerHTML) - 1;
         if (parseInt(temporizador.innerHTML) < 1) {
             respuesta.innerHTML =
-            "<persona>😒</persona><texto>Ya fue, compro en otro lado.</texto>";
+                "<persona>😒</persona><texto>Ya fue, compro en otro lado.</texto>";
             cuantosClientes = 0;
             t = 30;
             clearInterval(x);
@@ -139,7 +132,7 @@ function renderLocal() {
         productos[obtenerAleatorio(0, productos.length - 1)]
     }</persona></texto>`;
     // Valores
-    precio.value = precios[obtenerAleatorio(0, precios.length - 1)];
+    precio.value = obtenerAleatorio(1, 100) * 10;
     const queBilletes = billetes_cliente.filter((x) => x > precio.value);
     dinero.value = queBilletes[obtenerAleatorio(0, queBilletes.length - 1)];
     cambio.value = 0;
