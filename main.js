@@ -1,12 +1,6 @@
-const sonido_correcto = new Audio(
-    "http://www.sonidosmp3gratis.com/sounds/caja-registradora%20dinero.mp3"
-);
-const sonido_error = new Audio(
-    "http://www.sonidosmp3gratis.com/sounds/chicharra-error-incorrecto-.mp3"
-);
-const sonido_perder = new Audio(
-    "http://www.sonidosmp3gratis.com/sounds/nooo-nooo.mp3"
-);
+const sonido_correcto = new Audio("audios/sonido_correcto.mp3");
+const sonido_incorrecto = new Audio("audios/sonido_incorrecto.mp3");
+const sonido_perder = new Audio("audios/sonido_perder.mp3");
 
 const respuesta = document.querySelector(".respuesta");
 const caja = document.querySelector(".caja");
@@ -19,7 +13,8 @@ const temporizador = document.querySelector("temporizador");
 const puntos = document.querySelector("puntos");
 
 let t = 30;
-let termino;
+let tiempoAcabado = false;
+let terminoCliente= false;
 let cuantosClientes = 0;
 
 let clientes = ["👩", "👨", "👨‍⚕️", "👮‍♂️", "👩‍🎓", "👩‍🔬", "👨‍🍳"];
@@ -59,23 +54,25 @@ function tiempo() {
     const x = setInterval(() => {
         temporizador.innerHTML = parseInt(temporizador.innerHTML) - 1;
         if (parseInt(temporizador.innerHTML) < 1) {
+            tiempoAcabado = true;
+            clearInterval(x);
             sonido_perder.play();
             respuesta.innerHTML =
                 "<persona>😒</persona><texto>Ya fue, compro en otro lado.</texto>";
             cuantosClientes = 0;
             t = 30;
-            clearInterval(x);
             setTimeout(() => {
                 renderLocal();
             }, 5000);
         }
-        if (termino) {
+        if (terminoCliente) {
             clearInterval(x);
         }
     }, 1000);
 }
 
 function atender(e) {
+    if(!tiempoAcabado){
     if (
         parseInt(dinero.value) - parseInt(precio.value) ==
             parseInt(cambio.value) &&
@@ -84,7 +81,7 @@ function atender(e) {
         sonido_correcto.play();
         respuesta.innerHTML = "<persona>👍</persona><texto>Gracias!</texto>";
         cuantosClientes++;
-        termino = true;
+        terminoCliente = true;
         setTimeout(() => {
             renderLocal();
         }, 1000);
@@ -95,10 +92,11 @@ function atender(e) {
     ) {
         ayudar();
     } else {
-        sonido_error.play();
+        sonido_incorrecto.play();
         respuesta.innerHTML =
             "<persona>🤔</persona><texto>Espera! me diste mal el cambio.</texto>";
         cambio.value = 0;
+    }
     }
     e.preventDefault();
 }
@@ -121,7 +119,7 @@ function ayudar() {
         sonido_correcto.play();
         respuesta.innerHTML = "<persona>👍</persona><texto>Gracias!</texto>";
         cuantosClientes++;
-        termino = true;
+        terminoCliente = true;
         setTimeout(() => {
             renderLocal();
         }, 1000);
@@ -136,7 +134,7 @@ function renderLocal() {
         productos[obtenerAleatorio(0, productos.length - 1)]
     }</persona></texto>`;
     // Valores
-    precio.value = obtenerAleatorio(1, 100) * 10;
+    precio.value = obtenerAleatorio(1, 99) * 10;
     const queBilletes = billetes_cliente.filter((x) => x > precio.value);
     dinero.value = queBilletes[obtenerAleatorio(0, queBilletes.length - 1)];
     cambio.value = 0;
@@ -147,7 +145,8 @@ function renderLocal() {
         cajaBilletes.innerHTML += `<button class="billete" onclick="pagar(${b})"><c>$${b}</c></button>`;
     });
     // Tiempo
-    termino = false;
+    tiempoAcabado = false;
+    terminoCliente = false;
     tiempo();
 }
 
