@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Juego Cajero</title>
         <link rel="stylesheet" href="style.css" />
-        <link rel="shortcut icon" href="cajero-automatico.png">
+        <link rel="shortcut icon" href="cajero-automatico.png" />
     </head>
     <body>
         <div class="local">
@@ -34,7 +34,9 @@
                 <form class="caja">
                     <persona
                         ><img
-                            src="cajero-automatico.png" width="100" height="100"/></persona
+                            src="cajero-automatico.png"
+                            width="100"
+                            height="100" /></persona
                     ><br />
                     <span>Cambio:</span>
                     <input
@@ -45,7 +47,10 @@
                         autofocus
                         disabled
                     />
-                    <button>Dar</button>
+                    <button class="btn" role="none">
+                        <span class="edge"></span>
+                        <span class="front text">Dar</span>
+                    </button>
                 </form>
                 <div class="cajaBilletes"></div>
                 © Joaquin Garcia
